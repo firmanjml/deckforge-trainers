@@ -1,0 +1,251 @@
+{
+  "formatVersion": 1,
+
+  "game": {
+    "steamAppId": 1669420,
+    "name": "Islets",
+    "process": "Islets.exe"
+  },
+
+  "trainer": {
+    "id": "islets-default",
+    "name": "Islets Trainer",
+    "version": "1.1.0",
+    "author": "Cake-san CE & DeckForge Port"
+  },
+
+  "scripts": {
+    "setup": ["scripts/common/gamemaker.lua"]
+  },
+
+  "cheats": [
+    {
+      "id": "infinite_health",
+      "name": "Infinite Health",
+      "control": "toggle",
+      "action": {
+        "type": "freeze",
+        "valueType": "float64",
+        "value": 100.0,
+        "intervalMs": 100,
+        "resolver": { "type": "script", "language": "lua", "code": "return gm_addr('BaseGame', 'player_health')" }
+      }
+    },
+    {
+      "id": "infinite_ammo",
+      "name": "Infinite Arrow Ammo",
+      "control": "toggle",
+      "action": {
+        "type": "freeze",
+        "valueType": "float64",
+        "value": 5.0,
+        "intervalMs": 100,
+        "resolver": { "type": "script", "language": "lua", "code": "return gm_addr('BaseGame', 'arrow_ammo')" }
+      }
+    },
+    {
+      "id": "infinite_enable_jump",
+      "name": "Enable Infinite Jump",
+      "control": "action",
+      "action": {
+        "type": "freeze",
+        "valueType": "float64",
+        "value": 1.0,
+        "intervalMs": 100,
+        "resolver": { "type": "script", "language": "lua", "code": "return gm_addr('BaseGame', 'infjump')" }
+      }
+    },
+    {
+      "id": "infinite_disable_jump",
+      "name": "Disable Infinite Jump",
+      "control": "action",
+      "action": {
+        "type": "freeze",
+        "valueType": "float64",
+        "value": 0.0,
+        "intervalMs": 100,
+        "resolver": { "type": "script", "language": "lua", "code": "return gm_addr('BaseGame', 'infjump')" }
+      }
+    },
+    {
+      "id": "unlimited_currency",
+      "name": "Unlimited Currency",
+      "control": "toggle",
+      "action": {
+        "type": "freeze",
+        "valueType": "float64",
+        "value": 9999.0,
+        "intervalMs": 100,
+        "resolver": { "type": "script", "language": "lua", "code": "return gm_addr('BaseGame', 'currency')" }
+      }
+    },
+    {
+      "id": "unlimited_sw_damage",
+      "name": "One Hit Sword",
+      "control": "toggle",
+      "action": {
+        "type": "freeze",
+        "valueType": "float64",
+        "value": 9999.0,
+        "intervalMs": 100,
+        "resolver": { "type": "script", "language": "lua", "code": "return gm_addr('BaseGame', 'sworddamage')" }
+      }
+    },
+    {
+      "id": "unlimited_arr_damage",
+      "name": "One Hit Arrow",
+      "control": "toggle",
+      "action": {
+        "type": "freeze",
+        "valueType": "float64",
+        "value": 9999.0,
+        "intervalMs": 100,
+        "resolver": { "type": "script", "language": "lua", "code": "return gm_addr('BaseGame', 'arrowdamage')" }
+      }
+    },
+    {
+      "id": "no_roll_cooldown",
+      "name": "No Roll Cooldown",
+      "control": "toggle",
+      "action": {
+        "type": "freeze",
+        "valueType": "float64",
+        "value": 0.0,
+        "intervalMs": 100,
+        "resolver": { "type": "script", "language": "lua", "code": "return gm_addr('oPlayer', 'roll_cooldown')" }
+      }
+    },
+    {
+      "id": "currency",
+      "name": "Currency",
+      "control": "number",
+      "min": 0,
+      "max": 999999,
+      "action": {
+        "type": "value",
+        "valueType": "float64",
+        "resolver": { "type": "script", "language": "lua", "code": "return gm_addr('BaseGame', 'currency')" }
+      }
+    },
+    {
+      "id": "sworddamage",
+      "name": "Sword Damage",
+      "control": "number",
+      "min": 1,
+      "max": 9999,
+      "action": {
+        "type": "value",
+        "valueType": "float64",
+        "resolver": { "type": "script", "language": "lua", "code": "return gm_addr('BaseGame', 'sworddamage')" }
+      }
+    },
+    {
+      "id": "arrowdamage",
+      "name": "Arrow Damage",
+      "control": "number",
+      "min": 1,
+      "max": 9999,
+      "action": {
+        "type": "value",
+        "valueType": "float64",
+        "resolver": { "type": "script", "language": "lua", "code": "return gm_addr('BaseGame', 'arrowdamage')" }
+      }
+    },
+    {
+      "id": "arrow_speed",
+      "name": "Arrow Speed",
+      "control": "number",
+      "min": 1,
+      "max": 100,
+      "action": {
+        "type": "value",
+        "valueType": "float64",
+        "resolver": { "type": "script", "language": "lua", "code": "return gm_addr('BaseGame', 'arrow_speed')" }
+      }
+    },
+    {
+      "id": "jumpheight",
+      "name": "Jump Height",
+      "control": "number",
+      "min": 1,
+      "max": 100,
+      "action": {
+        "type": "value",
+        "valueType": "float64",
+        "resolver": { "type": "script", "language": "lua", "code": "return gm_addr('oPlayer', 'jumpheight')" }
+      }
+    },
+    {
+      "id": "doublejumpheight",
+      "name": "Double Jump Height",
+      "control": "number",
+      "min": 0,
+      "max": 1,
+      "action": {
+        "type": "value",
+        "valueType": "float64",
+        "resolver": { "type": "script", "language": "lua", "code": "return gm_addr('oPlayer', 'doublejumpheight')" }
+      }
+    },
+    {
+      "id": "walksp",
+      "name": "Walk Speed",
+      "control": "number",
+      "min": 1,
+      "max": 50,
+      "action": {
+        "type": "value",
+        "valueType": "float64",
+        "resolver": { "type": "script", "language": "lua", "code": "return gm_addr('oPlayer', 'walksp')" }
+      }
+    },
+    {
+      "id": "walksp2",
+      "name": "Walk Speed 2",
+      "control": "number",
+      "min": 1,
+      "max": 50,
+      "action": {
+        "type": "value",
+        "valueType": "float64",
+        "resolver": { "type": "script", "language": "lua", "code": "return gm_addr('oPlayer', 'walksp2')" }
+      }
+    },
+    {
+      "id": "roll_cooldown",
+      "name": "Roll Cooldown",
+      "control": "number",
+      "min": 0,
+      "max": 1,
+      "action": {
+        "type": "value",
+        "valueType": "float64",
+        "resolver": { "type": "script", "language": "lua", "code": "return gm_addr('oPlayer', 'roll_cooldown')" }
+      }
+    },
+    {
+      "id": "runsp",
+      "name": "Run Speed",
+      "control": "number",
+      "min": 1,
+      "max": 50,
+      "action": {
+        "type": "value",
+        "valueType": "float64",
+        "resolver": { "type": "script", "language": "lua", "code": "return gm_addr('oPlayer', 'runsp')" }
+      }
+    },
+    {
+      "id": "invincible_timer",
+      "name": "Invincibility Timer",
+      "control": "number",
+      "min": 0,
+      "max": 9999,
+      "action": {
+        "type": "value",
+        "valueType": "float64",
+        "resolver": { "type": "script", "language": "lua", "code": "return gm_addr('oPlayer', 'invincible_timer')" }
+      }
+    }
+  ]
+}
