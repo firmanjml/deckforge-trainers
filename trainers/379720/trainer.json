@@ -1,0 +1,103 @@
+{
+  "formatVersion": 1,
+
+  "game": {
+    "steamAppId": 379720,
+    "name": "DOOM",
+    "process": "DOOMx64vk.exe"
+  },
+
+  "trainer": {
+    "id": "doom-2016-default",
+    "name": "DOOM (2016) Trainer",
+    "version": "1.0.0",
+    "author": "VampTY CE & DeckForge Port"
+  },
+
+  "scripts": {
+    "bootstrap": [
+      { "id": "player_instance", "file": "scripts/player_instance.asm" }
+    ]
+  },
+
+  "cheats": [
+    {
+      "id": "unlimited_ammo",
+      "name": "Unlimited Ammo & Fuel",
+      "control": "toggle",
+      "action": {
+        "type": "auto_assembler",
+        "file": "scripts/unlimited_ammo.asm"
+      }
+    },
+    {
+      "id": "unlimited_grenade",
+      "name": "Unlimited Grenade",
+      "control": "toggle",
+      "action": {
+        "type": "auto_assembler",
+        "file": "scripts/unlimited_grenade.asm"
+      }
+    },
+    {
+      "id": "infinite_health",
+      "name": "Unlimited Health",
+      "control": "toggle",
+      "requires": ["player_instance"],
+      "action": {
+        "type": "freeze",
+        "valueType": "float32",
+        "value": 100.0,
+        "intervalMs": 100,
+        "resolver": {
+          "type": "script",
+          "language": "lua",
+          "file": "scripts/resolvers/health.lua"
+        }
+      }
+    },
+    {
+      "id": "infinite_armor",
+      "name": "Unlimited Armour",
+      "control": "toggle",
+      "requires": ["player_instance"],
+      "action": {
+        "type": "freeze",
+        "valueType": "float32",
+        "value": 100.0,
+        "intervalMs": 100,
+        "resolver": {
+          "type": "script",
+          "language": "lua",
+          "file": "scripts/resolvers/armor.lua"
+        }
+      }
+    },
+    {
+      "id": "unlimited_weapon_points",
+      "name": "Unlimited Weapon Upgrade Points",
+      "control": "toggle",
+      "requires": ["player_instance"],
+      "action": {
+        "type": "freeze",
+        "valueType": "int32",
+        "value": 9999,
+        "intervalMs": 250,
+        "resolver": {
+          "type": "script",
+          "language": "lua",
+          "file": "scripts/resolvers/weapon_points.lua"
+        }
+      }
+    },
+    {
+      "id": "unlimited_praetor_points",
+      "name": "Unlimited Praetor Suit Points",
+      "control": "toggle",
+      "action": {
+        "type": "auto_assembler",
+        "file": "scripts/unlimited_praetor_points.asm"
+      }
+    }
+  ]
+}
