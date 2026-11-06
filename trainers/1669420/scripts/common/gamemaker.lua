@@ -1020,6 +1020,18 @@ function gm_addr(object, property)
 
   local err = tostring(addr)
 
+  -- Discovery may have run before this object existed. Its property table can
+  -- be read now without repeating the expensive full discovery.
+  if err:find("not found on object") then
+    local refreshed = pcall(function()
+      get_properties(ensure(), get_object(object), object)
+    end)
+    if refreshed then
+      local ok3, addr3 = pcall(resolve_inner, object, property)
+      if ok3 then return addr3 end
+    end
+  end
+
   -- Property not on the requested object → search all objects that have it.
   if err:find("not found on object") or err:find("not found in ObjectList") then
     local state = ensure()
@@ -1043,9 +1055,11 @@ function gm_addr(object, property)
 
   -- Game-state transitions: BaseGame/instance might not have existed when we
   -- first attached (title screen → in-game). Re-discover once.
+  --
+  -- A missing object (no player in a menu) is not one of these: discovery would
+  -- find the same thing, and retries would repeat it about once per second.
   if err:find("was not discovered")
-     or err:find("instance not readable")
-     or err:find("no live variable storage") then
+     or err:find("instance not readable") then
     T.log("[GameMaker] resolution failed (" .. err .. "); re-initializing")
     gm.state = nil
     return resolve_inner(object, property)
