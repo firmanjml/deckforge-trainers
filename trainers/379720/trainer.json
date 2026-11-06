@@ -10,7 +10,7 @@
   "trainer": {
     "id": "doom-2016-default",
     "name": "DOOM (2016) Trainer",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "author": "VampTY CE & DeckForge Port"
   },
 

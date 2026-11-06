@@ -11,4 +11,7 @@ if use_addr == nil then
   error("player_instance bootstrap is not active")
 end
 local player = trainer.read_pointer(use_addr)
+if player == 0 then
+  error("player pointer has not been captured yet")
+end
 return player + 0x43BD4
